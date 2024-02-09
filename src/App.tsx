@@ -1,14 +1,14 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Header from "components/Header";
+import Footer from "components/Footer";
 
 const App = () => (
-  <div className='bg-slate-100 dark:bg-slate-900 flex flex-col min-h-screen text-stone-700 dark:text-stone-50'>
+  <div className="flex min-h-screen flex-col bg-slate-100 text-stone-700 dark:bg-slate-900 dark:text-stone-50">
     <Header />
 
-    <main className='max-w-[1440px] px-4 py-5 mx-auto flex-1 w-full'>
-      <Outlet/>
+    <main className="mx-auto w-full max-w-[1440px] flex-1 px-4 py-5">
+      <Outlet />
     </main>
 
     <Footer />
