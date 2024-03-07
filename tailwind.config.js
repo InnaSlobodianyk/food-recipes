@@ -12,6 +12,11 @@ export default {
         'hoverable': {'raw': '(hover: hover)'},
       }
     },
+    container: {
+      screens: {
+        "2xl": "1440px"
+      }
+    }
   },
   plugins: [],
 }

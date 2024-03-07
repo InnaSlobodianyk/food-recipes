@@ -1,19 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 import { IoCloseOutline, IoMenuOutline } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
-import clsx from "clsx";
+
+import { cn } from "helpers";
 
 import MainNav from "./MainNav.tsx";
 
+const windowWidthInitialState: number = window.innerWidth;
+
 const Navigation = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isHoverable, setIsHoverable] = useState<boolean>(false);
+  const [_, setWindowSize] = useState<number>(windowWidthInitialState);
 
   const { pathname } = useLocation();
 
   const handleClickBurger = () => {
-    setIsOpen((prevState) => !prevState);
+    setIsOpen((isOpen) => !isOpen);
   };
 
   useEffect(() => {
@@ -21,29 +27,38 @@ const Navigation = () => {
   }, [pathname]);
 
   useEffect(() => {
-    if (isOpen) {
-      document.querySelector("body")!.style.overflow = "hidden";
-    }
+    const handleResize = () => {
+      setWindowSize(() => window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    const isHoverableDevice = window.matchMedia("(hover: hover)");
+    setIsOpen(false);
+    setIsHoverable(() => isHoverableDevice.matches);
 
     return () => {
-      document.querySelector("body")!.removeAttribute("style");
+      window.removeEventListener("resize", handleResize);
     };
-  }, [isOpen]);
+  }, [window.innerWidth]);
 
   return (
     <nav>
-      <button
-        ref={buttonRef}
-        className="p-2 text-2xl md:hidden"
-        onClick={handleClickBurger}
-      >
-        {isOpen ? <IoCloseOutline /> : <IoMenuOutline />}
-      </button>
+      {isHoverable ? null : (
+        <button
+          ref={buttonRef}
+          className="p-2 text-2xl md:hidden"
+          onClick={handleClickBurger}
+        >
+          {isOpen ? <IoCloseOutline /> : <IoMenuOutline />}
+        </button>
+      )}
 
       <div
-        className={clsx(
+        ref={menuRef}
+        className={cn(
           isOpen
-            ? "absolute left-0 right-0 top-[50px] h-[calc(100vh-50px)] bg-slate-800 p-4"
+            ? "absolute left-0 right-0 top-[50px] h-[calc(100vh-50px)] bg-slate-800 p-4 md:static md:h-auto md:p-0"
             : "hidden md:block",
         )}
       >
