@@ -31,7 +31,7 @@ export const menu: MenuType[] = [
 ];
 
 const menuItemClassName =
-  "text-indigo-600 transition-colors hover:!text-indigo-600 group-hover:text-indigo-400 dark:text-indigo-400 dark:hover:!text-indigo-400 dark:group-hover:text-indigo-600 [&:has(.active)]:text-indigo-900 dark:[&:has(.active)]:text-indigo-600";
+  "text-indigo-600 transition-colors hoverable:hover:!text-indigo-600 hoverable:group-hover:text-indigo-400 dark:text-indigo-400 dark:hoverable:hover:!text-indigo-400 dark:hoverable:group-hover:text-indigo-600 [&:has(.active)]:text-indigo-900 dark:[&:has(.active)]:text-indigo-600";
 
 const MainNav = () => (
   <ul className="md:items-normal group flex flex-col items-end md:flex-row">
