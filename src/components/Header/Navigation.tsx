@@ -8,15 +8,13 @@ import { useClickOutside } from "hooks/useClickOutside.tsx";
 
 import MainNav from "./MainNav.tsx";
 
-const windowWidthInitialState: number = window.innerWidth;
-
 const isHoverableDevice = window.matchMedia("(hover: hover)");
 
 const Navigation = () => {
-  const menuRef = useClickOutside(() => setIsOpen(false));
-
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [_, setWindowSize] = useState<number>(windowWidthInitialState);
+  const menuRef = useClickOutside(
+    (isClickInside) => !isClickInside && setIsOpen(false),
+  );
 
   const { pathname } = useLocation();
 
@@ -25,11 +23,10 @@ const Navigation = () => {
     [isHoverableDevice.matches],
   );
 
-  const handleResize = () => {
-    setWindowSize(() => window.innerWidth);
-  };
-
-  const debouncedSendRequest = useCallback(debounce(handleResize, 300), []);
+  const handleDebounced = useCallback(
+    debounce(() => setIsOpen(false), 300),
+    [],
+  );
 
   const handleClickBurger = () => {
     setIsOpen((isOpen) => !isOpen);
@@ -40,17 +37,15 @@ const Navigation = () => {
   }, [pathname]);
 
   useEffect(() => {
-    window.addEventListener("resize", debouncedSendRequest);
-
-    setIsOpen(false);
+    window.addEventListener("resize", handleDebounced);
 
     return () => {
-      window.removeEventListener("resize", debouncedSendRequest);
+      window.removeEventListener("resize", handleDebounced);
     };
-  }, [window.innerWidth]);
+  }, []);
 
   return (
-    <nav>
+    <nav ref={menuRef}>
       {isHoverable ? null : (
         <button className="p-2 text-2xl md:hidden" onClick={handleClickBurger}>
           {isOpen ? <IoCloseOutline /> : <IoMenuOutline />}
@@ -58,7 +53,6 @@ const Navigation = () => {
       )}
 
       <div
-        ref={menuRef}
         className={cn(
           isOpen && !isHoverable
             ? "absolute left-0 right-0 top-[50px] h-[calc(100vh-50px)] bg-slate-800 p-4 md:static md:h-auto md:p-0"
