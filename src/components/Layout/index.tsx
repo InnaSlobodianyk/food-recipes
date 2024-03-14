@@ -7,7 +7,7 @@ const Layout = () => (
   <div className="flex min-h-screen flex-col bg-slate-100 text-stone-700 dark:bg-slate-900 dark:text-stone-50">
     <Header />
 
-    <main className="container mx-auto flex-1 px-4 py-5">
+    <main className="container mx-auto flex-1 px-4 py-5 lg:py-8">
       <Outlet />
     </main>
 
