@@ -1,30 +1,45 @@
-# React + TypeScript + Vite
+# Meals Recipes App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Meals Recipes is a web application designed to help users explore new culinary horizons. Utilizing The Meal DB API, the application provides users with the opportunity to explore diverse recipes and discover dishes based on available ingredients.
 
-Currently, two official plugins are available:
+The page for recipes search developed with React + TS + RTK Query + Tailwind
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies
 
-## Expanding the ESLint configuration
+- <a href="https://react.dev/">React</a>
+- <a href="https://www.typescriptlang.org/">TypeScript</a>
+- <a href="https://redux-toolkit.js.org/rtk-query/overview">RTK Query</a>
+- <a href="https://tailwindcss.com/">Tailwind</a>
+- <a href="https://reactrouter.com/">React-router</a>
+- <a href="https://www.themealdb.com/api.php">The Meal DB API</a>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting started
 
-- Configure the top-level `parserOptions` property like this:
+This project was bootstrapped with React + TypeScript + Vite.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Installation
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone the repository:
+
+    ``` git clone ssh://git@gitlab.codeit.pro:7822/InnaBondarenko/react-ts-idp.git ```
+
+2. Navigate to the project directory:
+
+    ``` cd my-project ```
+
+3. Install dependencies:
+
+    ``` npm install ```
+
+
+### Usage
+
+To run the project in development mode, execute:
+
+``` npm run dev ```
+
+Open http://localhost:5173 to view your application in the browser.
+
+To build the project, run:
+
+``` npm run build ```
