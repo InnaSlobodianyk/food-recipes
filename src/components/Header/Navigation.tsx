@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { IoCloseOutline, IoMenuOutline } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
 import debounce from "lodash.debounce";
@@ -8,18 +8,13 @@ import { useClickOutside } from "hooks/useClickOutside.tsx";
 
 import MainNav from "./MainNav.tsx";
 
-const isHoverableDevice = window.matchMedia("(hover: hover)");
+const isHoverable = window.matchMedia("(hover: hover)").matches;
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const menuRef = useClickOutside(setIsOpen);
 
   const { pathname } = useLocation();
-
-  const isHoverable = useMemo(
-    () => isHoverableDevice.matches,
-    [isHoverableDevice.matches],
-  );
 
   const handleDebounced = useCallback(
     debounce(() => setIsOpen(false), 300),
