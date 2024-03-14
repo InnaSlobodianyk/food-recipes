@@ -5,11 +5,9 @@ export const useClickOutside = (callback: (isClickInside: boolean) => void) => {
 
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        callback(false); // Click outside
-      } else {
-        callback(true); // Click inside
-      }
+      const isClickedInside = Boolean(ref.current?.contains(event.target as Node));
+
+      callback(isClickedInside);
     };
 
     document.addEventListener("mousedown", handleClick);

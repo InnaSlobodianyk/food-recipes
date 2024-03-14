@@ -12,9 +12,7 @@ const isHoverableDevice = window.matchMedia("(hover: hover)");
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const menuRef = useClickOutside(
-    (isClickInside) => !isClickInside && setIsOpen(false),
-  );
+  const menuRef = useClickOutside(setIsOpen);
 
   const { pathname } = useLocation();
 
