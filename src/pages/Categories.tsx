@@ -1,31 +1,16 @@
-import { useMemo } from "react";
-
-import { Category, useGetCategoriesQuery } from "services";
+import { useGetCategoriesQuery } from "services";
 
 import PageHeading from "components/PageHeading";
 import PageContainer from "components/PageContainer";
-import Cards, { CardItem } from "components/Cards";
+import Cards, { CardLinkCreatorPropsType } from "components/Cards";
 import { CardType } from "components/Cards/Card.tsx";
 import Spinner from "components/Spinner";
 
 const Categories = () => {
-  const { data, isLoading } = useGetCategoriesQuery();
-  const categories: Category[] = data || [];
+  const { data: cards, isLoading } = useGetCategoriesQuery();
 
-  const cards: CardItem[] = useMemo(
-    () =>
-      categories.map((category: Category) => {
-        return {
-          id: category.idCategory,
-          name: category.strCategory,
-          imageSrc: category.strCategoryThumb,
-          type: CardType.thumb,
-          link: category.strCategory.toLowerCase(),
-          btnText: "View Recipes",
-        };
-      }),
-    [data],
-  );
+  const cardLinkCreator = ({ name }: CardLinkCreatorPropsType) =>
+    name.toLowerCase();
 
   return (
     <PageContainer>
@@ -33,8 +18,12 @@ const Categories = () => {
 
       {isLoading ? <Spinner /> : null}
 
-      {categories.length ? (
-        <Cards items={cards} type={CardType.thumb} />
+      {cards?.length ? (
+        <Cards
+          items={cards}
+          type={CardType.thumb}
+          cardLinkCreator={cardLinkCreator}
+        />
       ) : (
         <div>No Categories found</div>
       )}

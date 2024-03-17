@@ -9,8 +9,7 @@ import Spinner from "components/Spinner";
 
 const MealDetails = () => {
   const { mealDetails } = useParams();
-  const mealId = mealDetails?.split("-")[0] || "";
-  const { data, isLoading } = useGetMealByIdQuery(mealId);
+  const { data, isLoading } = useGetMealByIdQuery(mealDetails || "");
   console.log(data);
 
   return (

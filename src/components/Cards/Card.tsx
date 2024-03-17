@@ -22,7 +22,7 @@ const imgContainerClassNames = {
 type PropsType = {
   id: string;
   title: string;
-  thumb: string;
+  thumb: string | null;
   link: string;
   btnText?: string;
   type?: CardType;
@@ -34,7 +34,7 @@ const Card = ({
   title,
   thumb,
   link,
-  btnText,
+  btnText = "View Recipes",
   type = CardType.default,
   className,
 }: PropsType) => {
@@ -52,13 +52,15 @@ const Card = ({
   return (
     <li key={id} className={type === CardType.default ? "h-full" : undefined}>
       <Link to={link} className={cardClassList}>
-        <div className={imgContainerClassList}>
-          <img
-            src={thumb}
-            alt={title}
-            className="absolute left-1/2 top-1/2 h-full -translate-x-1/2 -translate-y-1/2 transform"
-          />
-        </div>
+        {thumb ? (
+          <div className={imgContainerClassList}>
+            <img
+              src={thumb}
+              alt={title}
+              className="absolute left-1/2 top-1/2 h-full -translate-x-1/2 -translate-y-1/2 transform"
+            />
+          </div>
+        ) : null}
 
         <div className="flex w-full grow flex-col items-center gap-5 px-4 pb-4">
           <span className="text-center text-xl font-bold">{title}</span>

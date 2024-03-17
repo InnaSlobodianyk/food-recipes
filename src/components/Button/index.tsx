@@ -44,12 +44,11 @@ const sizesClasses = {
 
 const Button = ({
   type = ButtonType.button,
-  disabled = false,
   className,
   variant = ButtonVariant.primary,
   size = ButtonSize.medium,
-  onClick,
   children,
+  ...rest
 }: ButtonProps) => {
   const buttonClasses = cn(
     "rounded-full bg-indigo-700 font-semibold shadow-md focus:outline-none focus:ring focus:ring-indigo-400 focus:ring-opacity-75",
@@ -59,12 +58,7 @@ const Button = ({
   );
 
   return (
-    <button
-      className={buttonClasses}
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
-    >
+    <button className={buttonClasses} type={type} {...rest}>
       {children}
     </button>
   );
