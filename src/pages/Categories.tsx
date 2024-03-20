@@ -2,15 +2,12 @@ import { useGetCategoriesQuery } from "services";
 
 import PageHeading from "components/PageHeading";
 import PageContainer from "components/PageContainer";
-import Cards, { CardLinkCreatorPropsType } from "components/Cards";
+import Cards from "components/Cards";
 import { CardType } from "components/Cards/Card.tsx";
 import Spinner from "components/Spinner";
 
 const Categories = () => {
-  const { data: cards, isLoading } = useGetCategoriesQuery();
-
-  const cardLinkCreator = ({ name }: CardLinkCreatorPropsType) =>
-    name.toLowerCase();
+  const { data: categories, isLoading } = useGetCategoriesQuery();
 
   return (
     <PageContainer>
@@ -18,11 +15,10 @@ const Categories = () => {
 
       {isLoading ? <Spinner /> : null}
 
-      {cards?.length ? (
+      {categories?.length ? (
         <Cards
-          items={cards}
+          items={categories}
           type={CardType.thumb}
-          cardLinkCreator={cardLinkCreator}
         />
       ) : (
         <div>No Categories found</div>

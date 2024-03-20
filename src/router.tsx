@@ -3,7 +3,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import Home from "pages/Home.tsx";
 import Categories from "pages/Categories.tsx";
 import Countries from "pages/Countries.tsx";
-import Category from "pages/Category.tsx";
+import Meals from "pages/Meals.tsx";
 import MealDetails from "pages/MealDetails.tsx";
 
 import Layout from "components/Layout";
@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
           },
           {
             path: ":categoryName",
-            element: <Category />,
+            element: <Meals />,
           },
         ],
       },

@@ -19,28 +19,28 @@ export const recipesApi = createApi({
       transformResponse: (rawResult: { categories: CategoryResponse[] }) => {
         const categories = rawResult.categories || [];
 
-        if (categories.length === 0) return [];
-
         return categories.map((category) => ({
           id: category.idCategory,
           name: category.strCategory,
           imageSrc: category.strCategoryThumb,
           description: category.strCategoryDescription,
+          url: category.strCategory.toLowerCase(),
         }));
       },
     }),
 
-    getCategoryByName: builder.query<Meal[], string>({
+    getMealsByCategory: builder.query<Meal[], string>({
       query: (categoryName) => `filter.php?c=${categoryName}`,
       transformResponse: (rawResult: { meals: MealResponse[] }) => {
         const meals = rawResult.meals || [];
-
-        if (meals.length === 0) return [];
 
         return meals.map((meal: MealResponse) => ({
           id: meal.idMeal,
           name: meal.strMeal,
           imageSrc: meal.strMealThumb,
+          url: meal.idMeal !== undefined
+            ? `/recipe/${meal.idMeal}-${meal.strMeal.toLowerCase().split(" ").join("-")}`
+            : "",
         }));
       },
     }),
@@ -55,7 +55,7 @@ export const recipesApi = createApi({
 
 export const {
   useGetCategoriesQuery,
-  useGetCategoryByNameQuery,
+  useGetMealsByCategoryQuery,
   useGetMealByIdQuery,
 } = recipesApi;
 

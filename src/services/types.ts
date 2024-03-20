@@ -10,6 +10,7 @@ export interface Category {
   name: string;
   imageSrc: string;
   description: string;
+  url: string;
 }
 
 export interface MealResponse {
@@ -22,6 +23,7 @@ export interface Meal {
   id: string;
   name: string;
   imageSrc: string | null;
+  url: string;
 }
 
 export interface MealDetails extends Meal {

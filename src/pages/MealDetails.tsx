@@ -10,6 +10,7 @@ import Spinner from "components/Spinner";
 const MealDetails = () => {
   const { mealDetails } = useParams();
   const { data, isLoading } = useGetMealByIdQuery(mealDetails || "");
+  // TODO: This component will be finished in next PR
   console.log(data);
 
   return (
