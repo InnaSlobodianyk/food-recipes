@@ -38,9 +38,7 @@ export const recipesApi = createApi({
           id: meal.idMeal,
           name: meal.strMeal,
           imageSrc: meal.strMealThumb,
-          url: meal.idMeal !== undefined
-            ? `/recipe/${meal.idMeal}-${meal.strMeal.toLowerCase().split(" ").join("-")}`
-            : "",
+          url: `/recipe/${meal.idMeal}-${meal.strMeal.toLowerCase().replace(/[&()']/g, '').replace(/\s+/g, '-')}`,
         }));
       },
     }),
