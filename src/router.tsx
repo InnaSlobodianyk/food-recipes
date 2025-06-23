@@ -4,7 +4,7 @@ import Home from "pages/Home.tsx";
 import Categories from "pages/Categories.tsx";
 import Countries from "pages/Countries.tsx";
 import Meals from "pages/Meals.tsx";
-import MealDetails from "pages/MealDetails.tsx";
+import MealDetailsPage from "pages/MealDetailsPage.tsx";
 
 import Layout from "components/Layout";
 
@@ -57,7 +57,7 @@ export const router = createBrowserRouter([
           },
           {
             path: ":mealDetails",
-            element: <MealDetails />,
+            element: <MealDetailsPage />,
           },
         ],
       },

@@ -26,7 +26,7 @@ export interface Meal {
   url: string;
 }
 
-export interface MealDetails extends Meal {
+export interface MealDetailsResponse extends MealResponse {
   strArea: string | null;
   strCategory: string | null;
   strInstructions: string;
@@ -72,4 +72,10 @@ export interface MealDetails extends Meal {
   strMeasure18: string | null;
   strMeasure19: string | null;
   strMeasure20: string | null;
+}
+
+export interface MealDetails extends Omit<MealDetailsResponse, 'idMeal' | 'strMeal' | 'strMealThumb'> {
+  id: string;
+  name: string;
+  imageSrc: string | null;
 }
