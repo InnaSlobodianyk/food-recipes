@@ -31,7 +31,7 @@ type ButtonProps = {
 
 const variantClass = {
   primary:
-    "text-white hoverable:hover:bg-indigo-600 hoverable:group-hover:bg-indigo-600",
+    "bg-indigo-700 text-white hoverable:hover:bg-indigo-600 hoverable:group-hover:bg-indigo-600",
   outlined:
     "border text-indigo-700 hoverable:hover:bg-indigo-50 hoverable:group-hover:bg-indigo-50 dark:text-white dark:hoverable:hover:bg-indigo-600 dark:hoverable:group-hover:bg-indigo-600",
 };
@@ -51,7 +51,7 @@ const Button = ({
   ...rest
 }: ButtonProps) => {
   const buttonClasses = cn(
-    "rounded-full bg-indigo-700 font-semibold shadow-md focus:outline-none focus:ring focus:ring-indigo-400 focus:ring-opacity-75",
+    "rounded-full font-semibold shadow-md focus:outline-none focus:ring focus:ring-indigo-400 focus:ring-opacity-75",
     variantClass[variant],
     sizesClasses[size],
     className,
