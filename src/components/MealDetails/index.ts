@@ -1,4 +1,4 @@
-import MealDetails, { IngredientsAndMeasuresType } from "./MealDetails.tsx";
+import MealDetails, { IngredientMeasure } from "./MealDetails.tsx";
 
-export type { IngredientsAndMeasuresType }
+export type { IngredientMeasure }
 export default MealDetails;

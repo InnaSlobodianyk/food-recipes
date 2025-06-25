@@ -1,14 +1,16 @@
-import { FiCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { GrYoutube } from "react-icons/gr";
 
+import Ingredients from "./Ingredients";
+import Tags from "./Tags";
+import Instructions from "./Instructions";
 import { cn } from "helpers";
 
 import styles from "./MealDetails.module.scss";
 
 const YOUTUBE_EMBED_URL = 'https://www.youtube.com/embed/';
 
-export interface IngredientsAndMeasuresType {
+export interface IngredientMeasure {
   id: number;
   ingredient: string | null;
   measure: string | null;
@@ -21,7 +23,7 @@ interface MealDetailsProps {
     instructions: string[];
     tags: string[];
     youtubeSrc: string | null;
-    ingredientsAndMeasures: IngredientsAndMeasuresType[];
+    ingredientsAndMeasures: IngredientMeasure[];
   }
 }
 
@@ -37,69 +39,39 @@ const MealDetails = ({ meal }: MealDetailsProps) => {
 
   const youTubeUrl = `${YOUTUBE_EMBED_URL}${youtubeSrc}`;
 
+  const hasIngredients = Boolean(ingredientsAndMeasures.length);
+  const hasTags = Boolean(tags.length);
+  const hasInstructions = Boolean(instructions.length);
+
   return (
     <div className={styles.wrapper}>
-      {imageSrc ? (
+      {imageSrc && (
         <figure className="flex grow w-full">
           <img src={imageSrc || ""} alt={name} className={styles.image} />
         </figure>
-      ) : null}
+      )}
 
-      {(ingredientsAndMeasures.length || tags || youtubeSrc) && (
+      {(hasIngredients || hasTags || youtubeSrc) && (
         <div className={styles.ingredientsContainer}>
-          {ingredientsAndMeasures.length ? (
-            <div className="flex flex-col gap-3 self-stretch">
-              <h2 className={styles.title}>Ingredients</h2>
+          {hasIngredients && <Ingredients ingredients={ingredientsAndMeasures} /> }
 
-              <ul className={styles.ingredientsList}>
-                {ingredientsAndMeasures.map((item) => (
-                  <li key={item.id} className={styles.ingredientsListItem}>
-                    <FiCircle className="text-indigo-600" />
-
-                    <p className={styles.ingredientsListItemContent}>
-                        <span className="first-letter:capitalize flex-1">
-                          {item.ingredient}:
-                        </span>
-
-                      <span className="flex-1">{item.measure}</span>
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-
-          {(tags || youtubeSrc) && (
+          {(hasTags || youtubeSrc) && (
             <div className="flex flex-col gap-8">
-              {tags ? (
-                <div className="flex flex-col gap-3">
-                  <h2 className={styles.title}>Tags</h2>
+              {hasTags && <Tags tags={tags} />}
 
-                  <div>{tags?.join(" | ")}</div>
-                </div>
-              ) : null}
-
-              {youtubeSrc ? (
+              {youtubeSrc && (
                 <Link to={youTubeUrl} className={cn(styles.title, styles.sourceLink)}>
                   <GrYoutube />
 
                   <span>See recipe in YouTube</span>
                 </Link>
-              ) : null}
+              )}
             </div>
           )}
         </div>
       )}
 
-      {instructions ? (
-        <div className="flex flex-col gap-3">
-          <h2 className={styles.title}>Instructions</h2>
-
-          <div className="flex flex-col gap-4">
-            {instructions.map((item, index) => <p key={index}>{item}</p>)}
-          </div>
-        </div>
-      ) : null}
+      {hasInstructions && <Instructions instructions={instructions} />}
     </div>
   );
 };
