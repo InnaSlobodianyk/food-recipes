@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+	.cardSmall {
+		@apply flex flex-col items-center gap-5 rounded border border-slate-700 bg-slate-800 p-2 md:flex-row;
+	}
+
+	.imageContainer {
+		@apply shrink-0 max-w-[100px];
+	}
+
+	.content {
+		@apply grow;
+	}
+}
