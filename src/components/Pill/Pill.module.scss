@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+	.pill {
+		@apply flex flex-col gap-3;
+	}
+
+	.pillWrapper {
+		@apply flex items-center gap-1 rounded-full bg-indigo-600 p-1 pr-2;
+	}
+
+	.pillWrapperHover {
+		@apply hoverable:hover:bg-indigo-600/75 cursor-pointer;
+	}
+
+	.icon {
+		@apply rounded-full bg-indigo-800 p-1;
+	}
+}

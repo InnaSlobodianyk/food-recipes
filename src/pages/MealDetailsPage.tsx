@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { GrMap } from "react-icons/gr";
 import { GiHotMeal } from "react-icons/gi";
 
@@ -9,6 +9,7 @@ import PageHeading from "components/PageHeading";
 import BackButton from "components/BackButton";
 import Spinner from "components/Spinner";
 import MealDetails, { IngredientMeasure } from "components/MealDetails";
+import Pill from "components/Pill";
 
 const MealDetailsPage = () => {
   const { mealDetails } = useParams();
@@ -64,30 +65,15 @@ const MealDetailsPage = () => {
         <PageHeading>{name}</PageHeading>
 
         <div className="flex gap-6">
-          {area && (
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-1 rounded-full bg-indigo-600 p-1 pr-2">
-                  <span className="rounded-full bg-indigo-800 p-1">
-                    <GrMap />
-                  </span>
-                {data.strArea}
-              </div>
-            </div>
-          )}
+          {area && <Pill text={area} icon={<GrMap />} />}
 
           {category && (
-            <div className="flex flex-col gap-3">
-              <Link
-                to={`/categories/${category.toLowerCase()}`}
-                className="flex items-center gap-1 rounded-full bg-indigo-600 hoverable:hover:bg-indigo-600/75 p-1 pr-2"
-              >
-                <span className="rounded-full bg-indigo-800 p-1">
-                  <GiHotMeal />
-                </span>
-
-                <span>{category}</span>
-              </Link>
-            </div>
+            <Pill
+              text={category}
+              icon={<GiHotMeal />}
+              isLink
+              to={`/categories/${category.toLowerCase()}`}
+            />
           )}
         </div>
       </div>
