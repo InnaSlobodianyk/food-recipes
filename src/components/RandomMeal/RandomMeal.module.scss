@@ -2,7 +2,7 @@
 
 @layer components {
 	.wrapper {
-		@apply w-full bg-slate-50/10 rounded-[16px] p-4 md:p-6;
+		@apply w-full bg-slate-50/10 rounded p-4 border border-slate-700 md:p-6;
 	}
 
 	.innerWrapper {

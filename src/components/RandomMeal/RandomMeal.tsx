@@ -34,7 +34,7 @@ const RandomMeal = ({ meal, isFetching = false }: RandomMealProps) => {
           <figure className="flex grow w-full">
             <img
               src={imageSrc || ""} alt={name}
-              className="aspect-[16/9] object-cover rounded-[16px]"
+              className="aspect-[16/9] object-cover rounded"
             />
           </figure>
         )}
