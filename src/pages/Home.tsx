@@ -1,7 +1,13 @@
+import PageContainer from "components/PageContainer";
+import RandomMeal from "components/RandomMeal";
+import PageHeading from "components/PageHeading";
+
 const Home = () => (
-  <div>
-    <h1>Home</h1>
-  </div>
+  <PageContainer>
+    <PageHeading>Your Kitchen Companion – FoodExplorer Awaits!</PageHeading>
+
+    <RandomMeal />
+  </PageContainer>
 );
 
 export default Home;
