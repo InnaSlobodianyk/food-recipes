@@ -5,14 +5,17 @@ import { GiHotMeal } from "react-icons/gi";
 import Pill from "components/Pill";
 import Spinner from "components/Spinner";
 
-import { useGetRandomMealQuery } from "services";
+import { MealDetails } from "services";
 
 import styles from "./RandomMeal.module.scss";
 
-const RandomMeal = () => {
-  const { data, isFetching } = useGetRandomMealQuery();
+interface RandomMealProps {
+  meal?: MealDetails;
+  isFetching?: boolean;
+}
 
-  if (!data) return null;
+const RandomMeal = ({ meal, isFetching = false }: RandomMealProps) => {
+  if (!meal) return null;
 
   const {
     id,
@@ -20,7 +23,7 @@ const RandomMeal = () => {
     imageSrc,
     strCategory: category,
     strArea: area,
-  } = data;
+  } = meal;
 
   const mealUrl = (id && name) ? `/recipe/${id}-${name.toLowerCase().replace(/[&(),']/g, '').replace(/\s+/g, '-')}` : '';
 

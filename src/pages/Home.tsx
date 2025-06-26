@@ -2,12 +2,20 @@ import PageContainer from "components/PageContainer";
 import RandomMeal from "components/RandomMeal";
 import PageHeading from "components/PageHeading";
 
-const Home = () => (
-  <PageContainer>
-    <PageHeading>Your Kitchen Companion – FoodExplorer Awaits!</PageHeading>
+import { useGetRandomMealQuery } from "services";
 
-    <RandomMeal />
-  </PageContainer>
-);
+const Home = () => {
+  const { data, isFetching } = useGetRandomMealQuery();
+
+  const meal = data || undefined;
+
+  return (
+    <PageContainer>
+      <PageHeading>Your Kitchen Companion – FoodExplorer Awaits!</PageHeading>
+
+      {meal && <RandomMeal meal={meal} isFetching={isFetching} />}
+    </PageContainer>
+  )
+};
 
 export default Home;
