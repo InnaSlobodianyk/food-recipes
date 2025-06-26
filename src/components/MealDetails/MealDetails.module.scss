@@ -1,0 +1,23 @@
+@tailwind components;
+
+@layer components {
+	.wrapper {
+		@apply flex flex-col items-start gap-6 md:gap-12 md:grid md:grid-cols-[repeat(2,1fr)];
+	}
+
+	.image {
+		@apply w-full aspect-[16/9] object-cover md:aspect-[4/3] md:h-auto md:max-h-[400px];
+	}
+
+	.title {
+		@apply text-indigo-600 text-xl;
+	}
+
+	.ingredientsContainer {
+		@apply flex flex-col gap-6 self-stretch md:[grid-area:1/2/3/3];
+	}
+
+	.sourceLink {
+		@apply flex gap-3 items-center hoverable:hover:text-indigo-600/75;
+	}
+}

@@ -5,8 +5,9 @@ import {
   CategoryResponse,
   Meal,
   MealDetails,
+  MealDetailsResponse,
   MealResponse,
-} from "./types.ts";
+} from './types.ts';
 
 export const recipesApi = createApi({
   reducerPath: "recipesApi",
@@ -38,15 +39,20 @@ export const recipesApi = createApi({
           id: meal.idMeal,
           name: meal.strMeal,
           imageSrc: meal.strMealThumb,
-          url: `/recipe/${meal.idMeal}-${meal.strMeal.toLowerCase().replace(/[&()']/g, '').replace(/\s+/g, '-')}`,
+          url: `/recipe/${meal.idMeal}-${meal.strMeal.toLowerCase().replace(/[&(),']/g, '').replace(/\s+/g, '-')}`,
         }));
       },
     }),
 
     getMealById: builder.query<MealDetails, string>({
       query: (id) => `lookup.php?i=${id.split("-")[0]}`,
-      transformResponse: (rawResult: { meals: MealDetails[] }) =>
-        rawResult.meals[0],
+      transformResponse: (rawResult: { meals: MealDetailsResponse[] }) =>
+        rawResult.meals.map(({idMeal, strMeal, strMealThumb, ...meal}: MealDetailsResponse) => ({
+          id: idMeal,
+          name: strMeal,
+          imageSrc: strMealThumb,
+          ...meal
+        }))[0],
     }),
   }),
 });
