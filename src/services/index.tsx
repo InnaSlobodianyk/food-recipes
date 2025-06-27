@@ -1,13 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import {
-  Category,
-  CategoryResponse,
-  Meal,
-  MealDetails,
-  MealDetailsResponse,
-  MealResponse,
-} from './types.ts';
+import { Category, CategoryResponse } from "types/Category.ts";
+import { Meal, MealResponse } from "types/Meal.ts";
+import { MealDetails, MealDetailsResponse } from "types/MealDetails.ts";
 
 export const recipesApi = createApi({
   reducerPath: "recipesApi",

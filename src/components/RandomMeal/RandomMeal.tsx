@@ -5,14 +5,14 @@ import { GiHotMeal } from "react-icons/gi";
 import Pill from "components/Pill";
 import Spinner from "components/Spinner";
 
-import { MealDetails } from "services";
+import { MealDetails } from "types/MealDetails.ts";
 
 import styles from "./RandomMeal.module.scss";
 
-interface RandomMealProps {
+type RandomMealProps = {
   meal?: MealDetails;
   isFetching?: boolean;
-}
+};
 
 const RandomMeal = ({ meal, isFetching = false }: RandomMealProps) => {
   if (!meal) return null;
