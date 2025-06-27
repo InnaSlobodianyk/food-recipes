@@ -54,6 +54,17 @@ export const recipesApi = createApi({
           ...meal
         }))[0],
     }),
+
+    getRandomMeal: builder.query<MealDetails, void>( {
+      query: () => "random.php",
+      transformResponse: (rawResult: { meals: MealDetailsResponse[] }) =>
+        rawResult.meals.map(({idMeal, strMeal, strMealThumb, ...meal}: MealDetailsResponse) => ({
+          id: idMeal,
+          name: strMeal,
+          imageSrc: strMealThumb,
+          ...meal
+        }))[0],
+    }),
   }),
 });
 
@@ -61,6 +72,7 @@ export const {
   useGetCategoriesQuery,
   useGetMealsByCategoryQuery,
   useGetMealByIdQuery,
+  useGetRandomMealQuery,
 } = recipesApi;
 
 export { type Category, type Meal, type MealDetails };
