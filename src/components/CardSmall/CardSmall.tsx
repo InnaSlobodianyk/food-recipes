@@ -4,7 +4,7 @@ import styles from "./CardSmall.module.scss";
 
 interface CardSmallProps {
   name: string;
-  imageSrc: string | null;
+  imageSrc?: string | null;
   url: string;
 }
 
