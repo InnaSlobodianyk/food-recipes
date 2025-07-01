@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Category, CategoryResponse } from "types/Category.ts";
 import { Meal, MealResponse } from "types/Meal.ts";
 import { MealDetails, MealDetailsResponse } from "types/MealDetails.ts";
+import { Area, AreaResponse } from "types/Country.ts";
 
 export const recipesApi = createApi({
   reducerPath: "recipesApi",
@@ -60,6 +61,32 @@ export const recipesApi = createApi({
           ...meal
         }))[0],
     }),
+
+    getAreas: builder.query<Area[], void>({
+      query: () => "list.php?a=list",
+      transformResponse: (rawResult: { meals: AreaResponse[] }) => {
+        const areas = rawResult.meals || [];
+
+        return areas.map((meal: AreaResponse) => ({
+          name: meal.strArea,
+          url: `${meal.strArea.toLowerCase()}`,
+        }));
+      },
+    }),
+
+    getMealsByCountry: builder.query<Meal[], string>({
+      query: (countryName) => `filter.php?a=${countryName}`,
+      transformResponse: (rawResult: { meals: MealResponse[] }) => {
+        const meals = rawResult.meals || [];
+
+        return meals.map((meal: MealResponse) => ({
+          id: meal.idMeal,
+          name: meal.strMeal,
+          imageSrc: meal.strMealThumb,
+          url: `/recipe/${meal.idMeal}-${meal.strMeal.toLowerCase().replace(/[&(),']/g, '').replace(/\s+/g, '-')}`,
+        }));
+      },
+    }),
   }),
 });
 
@@ -68,6 +95,8 @@ export const {
   useGetMealsByCategoryQuery,
   useGetMealByIdQuery,
   useGetRandomMealQuery,
+  useGetAreasQuery,
+  useGetMealsByCountryQuery,
 } = recipesApi;
 
 export { type Category, type Meal, type MealDetails };
