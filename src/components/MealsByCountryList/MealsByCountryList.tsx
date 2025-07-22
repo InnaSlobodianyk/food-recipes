@@ -9,8 +9,8 @@ type MealsByCountryListProps = {
 
 const MealsByCountryList = ({ areas }: MealsByCountryListProps) => (
   <ul className={styles.list}>
-    {areas.map(({ name, url }: Area, index: number) => (
-      <li key={index}>
+    {areas.map(({ name, url }: Area) => (
+      <li key={name}>
         <CardSmall name={name} url={url} />
       </li>
     ))}

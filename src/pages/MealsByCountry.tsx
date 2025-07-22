@@ -17,9 +17,7 @@ const MealsByCountry = () => {
     <PageContainer>
       <BackButton />
 
-      <PageHeading>
-        {countryName && capitalizeFirstLetter(countryName)}
-      </PageHeading>
+      <PageHeading>{capitalizeFirstLetter(countryName)}</PageHeading>
 
       {isLoading && <Spinner />}
 
