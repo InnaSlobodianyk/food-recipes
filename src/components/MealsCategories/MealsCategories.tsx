@@ -1,12 +1,12 @@
 import CardSmall from "components/CardSmall";
 
-import { Category } from "services/types.ts";
+import { Category } from "types/Category.ts";
 
 import styles from "./MealsCategories.module.scss";
 
-interface MealsCategoriesProps {
+type MealsCategoriesProps = {
   meals: Category[];
-}
+};
 
 const MealsCategories = ({ meals = [] }: MealsCategoriesProps) => {
   const hasMeals = Boolean(meals.length);

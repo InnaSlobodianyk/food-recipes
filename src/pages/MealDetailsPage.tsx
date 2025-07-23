@@ -8,8 +8,9 @@ import PageContainer from "components/PageContainer";
 import PageHeading from "components/PageHeading";
 import BackButton from "components/BackButton";
 import Spinner from "components/Spinner";
-import MealDetails, { IngredientMeasure } from "components/MealDetails";
 import Pill from "components/Pill";
+import MealDetails from "components/MealDetails";
+import type { IngredientMeasure } from "types/MealDetails.ts";
 
 const MealDetailsPage = () => {
   const { mealDetails } = useParams();

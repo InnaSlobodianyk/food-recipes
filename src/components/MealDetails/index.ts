@@ -1,4 +1,3 @@
-import MealDetails, { IngredientMeasure } from "./MealDetails.tsx";
+import MealDetails from "./MealDetails.tsx";
 
-export type { IngredientMeasure }
 export default MealDetails;

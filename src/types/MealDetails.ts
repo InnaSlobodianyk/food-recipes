@@ -1,32 +1,6 @@
-export interface CategoryResponse {
-  idCategory: string;
-  strCategory: string;
-  strCategoryThumb: string;
-  strCategoryDescription: string;
-}
+import { MealResponse } from "types/Meal.ts";
 
-export interface Category {
-  id: string;
-  name: string;
-  imageSrc: string;
-  description: string;
-  url: string;
-}
-
-export interface MealResponse {
-  idMeal: string;
-  strMeal: string;
-  strMealThumb: string | null;
-}
-
-export interface Meal {
-  id: string;
-  name: string;
-  imageSrc: string | null;
-  url: string;
-}
-
-export interface MealDetailsResponse extends MealResponse {
+export type MealDetailsResponse = MealResponse & {
   strArea: string | null;
   strCategory: string | null;
   strInstructions: string;
@@ -72,10 +46,16 @@ export interface MealDetailsResponse extends MealResponse {
   strMeasure18: string | null;
   strMeasure19: string | null;
   strMeasure20: string | null;
-}
+};
 
-export interface MealDetails extends Omit<MealDetailsResponse, 'idMeal' | 'strMeal' | 'strMealThumb'> {
+export type MealDetails = Omit<MealDetailsResponse, 'idMeal' | 'strMeal' | 'strMealThumb'> & {
   id: string;
   name: string;
   imageSrc: string | null;
-}
+};
+
+export type IngredientMeasure = {
+  id: number;
+  ingredient: string | null;
+  measure: string | null;
+};

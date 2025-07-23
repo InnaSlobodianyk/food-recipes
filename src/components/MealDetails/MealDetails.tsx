@@ -4,19 +4,14 @@ import { GrYoutube } from "react-icons/gr";
 import Ingredients from "./Ingredients";
 import Tags from "./Tags";
 import Instructions from "./Instructions";
+import type { IngredientMeasure } from "types/MealDetails.ts";
 import { cn } from "helpers";
 
 import styles from "./MealDetails.module.scss";
 
 const YOUTUBE_EMBED_URL = 'https://www.youtube.com/embed/';
 
-export interface IngredientMeasure {
-  id: number;
-  ingredient: string | null;
-  measure: string | null;
-}
-
-interface MealDetailsProps {
+type MealDetailsProps = {
   meal: {
     name: string;
     imageSrc: string | null;
@@ -25,7 +20,7 @@ interface MealDetailsProps {
     youtubeSrc: string | null;
     ingredientsAndMeasures: IngredientMeasure[];
   }
-}
+};
 
 const MealDetails = ({ meal }: MealDetailsProps) => {
   const {
