@@ -87,6 +87,19 @@ export const recipesApi = createApi({
         }));
       },
     }),
+
+    getMealByName: builder.query<Meal[], string>({
+      query: (searchQuery) => `search.php?s=${searchQuery}`,
+      transformResponse: (rawResult: { meals: MealResponse[] }) => {
+        return rawResult.meals.map(({idMeal, strMeal, strMealThumb, ...meal}: MealResponse) => ({
+          id: idMeal,
+          name: strMeal,
+          imageSrc: strMealThumb,
+          url: `/recipe/${idMeal}-${strMeal.toLowerCase().replace(/[&(),']/g, '').replace(/\s+/g, '-')}`,
+          ...meal
+        }));
+      }
+    }),
   }),
 });
 
@@ -97,6 +110,7 @@ export const {
   useGetRandomMealQuery,
   useGetAreasQuery,
   useGetMealsByCountryQuery,
+  useGetMealByNameQuery,
 } = recipesApi;
 
 export { type Category, type Meal, type MealDetails };

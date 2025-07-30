@@ -6,6 +6,7 @@ import Countries from "pages/Countries.tsx";
 import Meals from "pages/Meals.tsx";
 import MealDetailsPage from "pages/MealDetailsPage.tsx";
 import MealsByCountry from "pages/MealsByCountry.tsx";
+import SearchPage from "pages/SearchPage.tsx";
 
 import Layout from "components/Layout";
 
@@ -64,6 +65,19 @@ export const router = createBrowserRouter([
             path: ":mealDetails",
             element: <MealDetailsPage />,
           },
+        ],
+      },
+      {
+        path: "/search",
+        children: [
+          {
+            index: true,
+            element: <Navigate to="/" />,
+          },
+          {
+            path: ":searchQuery",
+            element: <SearchPage />,
+          }
         ],
       },
     ],

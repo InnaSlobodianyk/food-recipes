@@ -1,0 +1,12 @@
+@tailwind components;
+
+@layer components {
+	.wrapper {
+		@apply my-10 w-full flex items-stretch space-x-4;
+	}
+
+	.input {
+		@apply rounded-[8px] px-2 py-1 bg-slate-800 text-white placeholder:text-slate-400 grow
+		focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75;
+	}
+}
