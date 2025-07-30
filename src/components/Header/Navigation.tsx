@@ -38,7 +38,7 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav ref={menuRef}>
+    <nav ref={menuRef} className="ml-auto">
       {isHoverable ? null : (
         <button className="p-2 text-2xl md:hidden" onClick={handleClickBurger}>
           {isOpen ? <IoCloseOutline /> : <IoMenuOutline />}
