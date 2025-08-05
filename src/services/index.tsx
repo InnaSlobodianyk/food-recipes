@@ -4,6 +4,8 @@ import { Category, CategoryResponse } from "types/Category.ts";
 import { Meal, MealResponse } from "types/Meal.ts";
 import { MealDetails, MealDetailsResponse } from "types/MealDetails.ts";
 import { Area, AreaResponse } from "types/Country.ts";
+import { getMealUrl } from "helpers";
+import { RECIPE_URL } from "helpers/constants.ts";
 
 export const recipesApi = createApi({
   reducerPath: "recipesApi",
@@ -35,7 +37,7 @@ export const recipesApi = createApi({
           id: meal.idMeal,
           name: meal.strMeal,
           imageSrc: meal.strMealThumb,
-          url: `/recipe/${meal.idMeal}-${meal.strMeal.toLowerCase().replace(/[&(),']/g, '').replace(/\s+/g, '-')}`,
+          url: getMealUrl(RECIPE_URL, meal.idMeal, meal.strMeal),
         }));
       },
     }),
@@ -83,7 +85,7 @@ export const recipesApi = createApi({
           id: meal.idMeal,
           name: meal.strMeal,
           imageSrc: meal.strMealThumb,
-          url: `/recipe/${meal.idMeal}-${meal.strMeal.toLowerCase().replace(/[&(),']/g, '').replace(/\s+/g, '-')}`,
+          url: getMealUrl(RECIPE_URL, meal.idMeal, meal.strMeal),
         }));
       },
     }),
@@ -95,7 +97,7 @@ export const recipesApi = createApi({
           id: idMeal,
           name: strMeal,
           imageSrc: strMealThumb,
-          url: `/recipe/${idMeal}-${strMeal.toLowerCase().replace(/[&(),']/g, '').replace(/\s+/g, '-')}`,
+          url: getMealUrl(RECIPE_URL, idMeal, strMeal),
           ...meal
         }));
       }
