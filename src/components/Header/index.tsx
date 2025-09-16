@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 import Navigation from "./Navigation.tsx";
-import Search from "components/Search";
 
 const Header = () => (
   <header className="sticky top-0 z-10 flex h-[50px] border-b bg-slate-50 bg-opacity-50 backdrop-blur-md backdrop-filter dark:border-slate-900 dark:bg-slate-800 dark:bg-opacity-90 md:h-auto hoverable:hover:bg-opacity-100 dark:hoverable:hover:bg-opacity-100">
@@ -13,8 +12,6 @@ const Header = () => (
           alt="FoodExpert logo"
         />
       </Link>
-
-      <Search />
 
       <Navigation />
     </div>
