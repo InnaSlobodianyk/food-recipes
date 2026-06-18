@@ -21,7 +21,7 @@ This project was bootstrapped with React + TypeScript + Vite.
 
 1. Clone the repository:
 
-    ``` git clone ssh://git@gitlab.codeit.pro:7822/InnaBondarenko/react-ts-idp.git ```
+    ``` git clone ```
 
 2. Navigate to the project directory:
 
